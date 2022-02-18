@@ -11,6 +11,7 @@ const RootElement = () => {
                 <Route path='/' exact element={<App/>}/>
                 <Route path='/login' exact element={<Login/>}/>
                 <Route path='/client-registration' exact elment={<ClientRegistration/>}/>
+                
             </Routes>
         </BrowserRouter>
     );

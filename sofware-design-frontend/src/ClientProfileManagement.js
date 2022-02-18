@@ -4,6 +4,7 @@ const ClientProfileManagment = () => {
 
     return (
         <>
+        <h2> Client Profile Managment:</h2>
         </>
     );
 };
