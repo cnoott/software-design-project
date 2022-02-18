@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './App';
 import Login from './login/Login';
-import ClientRegistration from './ClientRegistration';
+import ClientRegistration from './registration/ClientRegistration';
 import ClientProfileManagment from './ClientProfileManagement';
 import FuelQuoteForm from './fuel_pages/FuelQuoteForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
