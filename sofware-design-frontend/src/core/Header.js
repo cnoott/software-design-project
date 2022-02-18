@@ -20,9 +20,8 @@ const Header = () => {
 			    <Nav.Link href="/client-registration">Registration</Nav.Link>           
 			    <Nav.Link href="/client-profile-managment">Profile Managment</Nav.Link>
 			    <NavDropdown title="Fuel Info" id="basic-nav-dropdown">
-				<NavDropdown.Item href="#action/3.1">Fuel Quote</NavDropdown.Item>
-				<NavDropdown.Item href="#action/3.2">Fuel Quote History</NavDropdown.Item>
-				<NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
+				<NavDropdown.Item href="/fuel-quote-form">Fuel Quote</NavDropdown.Item>
+				<NavDropdown.Item href="/fuel-quote-history">Fuel Quote History</NavDropdown.Item>
 			    </NavDropdown>
 			</Nav>
 		    </Navbar.Collapse>
