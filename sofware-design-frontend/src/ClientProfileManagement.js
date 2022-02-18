@@ -45,6 +45,11 @@ const ClientProfileManagment = () => {
             setShowError(true);
             setErrMsg('The address2 must be shorter than 100 characters');           
         }
+        else if(city.length > 100){
+            setShowError(true);
+            setErrMsg('The city must be shorter than 100 characters');
+
+        }
         else if (zip.length < 5) {
             setShowError(true);
             setErrMsg('The zipcode must be greater than 5 characters');           
