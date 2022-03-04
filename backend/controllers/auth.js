@@ -5,7 +5,7 @@ const { v1: uuidv1 } = require('uuid');
 
 require('dotenv').config();
 
-const signup = (req, res) => {
+exports.signup = (req, res) => {
     console.log(req.body);
 
     const user = new User(req.body);
@@ -28,3 +28,5 @@ const signup = (req, res) => {
         return res.json({token, user: {_id, username}});
     });
 };
+
+
