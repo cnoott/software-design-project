@@ -1,4 +1,4 @@
-const User = require('./models/user');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const { v1: uuidv1 } = require('uuid');
@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
         user.salt = undefined;
         user.hashed_password = undefined;
 
-        const token = jwt.sign({ _id: user._id, process.env.JWT_SECRET });
+        const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET);
 
         res.cookie('t', token, { expiry: new Date() + 999 });
 

@@ -8,20 +8,27 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-//import routes here
 
 
 const app = express();
 
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: '*',
 }));
 
+//import routes here
+const authRoutes = require('./routes/auth');
+//user routes here
+
 //routes
+app.use('/api', authRoutes);
 
 const PORT = process.env.PORT || 8000;
 
