@@ -57,4 +57,25 @@ exports.signin = (req, res) => {
     });
 };
 
+exports.signout = (req, res, next) => {
+    res.clearCookie('t');
+    res.json({ message: 'Signout Success' });
+};
+
+//requireSignin
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ['HS256'],
+    userProperty: 'auth'
+});
+
+exports.isAuth = (req, res, next) => {
+    let user = req.profile && req.auth && req.profile._id == req.auth._id;
+    if(!user) {
+        return res.status(403).json({
+            error: 'Access denied'
+        });
+    }
+    next();
+};
 
