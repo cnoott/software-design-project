@@ -1,4 +1,4 @@
-const User = require('./models/user');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const { v1: uuidv1 } = require('uuid');
@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
         user.salt = undefined;
         user.hashed_password = undefined;
 
-        const token = jwt.sign({ _id: user._id, process.env.JWT_SECRET });
+        const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET);
 
         res.cookie('t', token, { expiry: new Date() + 999 });
 
@@ -31,8 +31,8 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
     //find user based on email
-    const { email, password } = req.body;
-    User.findOne({ email }, (err, user) => {
+    const { username, password } = req.body;
+    User.findOne({ username }, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: 'User with that email does not exist'
@@ -52,8 +52,8 @@ exports.signin = (req, res) => {
         res.cookie('t', token, { expiry: new Date() + 150 });
 
         //return response with user and token to frontend client
-        const { _id, name, email, role, profile_picture } = user;
-        return res.json({ token, user: { _id, email, name, role, profile_picture } });
+        const { _id, username } = user;
+        return res.json({ token, user: { _id, username } });
     });
 };
 

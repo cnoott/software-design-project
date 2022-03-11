@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: 50
+        maxlength: 50,
         unique: true,
     },
 
@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         maxlength: 50,
-        unique: true,
     },
 
     address1: {

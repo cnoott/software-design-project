@@ -8,20 +8,30 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-//import routes here
 
 
 const app = express();
 
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: '*',
 }));
 
+//import routes here
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
+const fuelRoutes = require('./routes/fuel_quote');
+
 //routes
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api', fuelRoutes);
 
 const PORT = process.env.PORT || 8000;
 

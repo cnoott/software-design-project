@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import Header from './core/Header';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
+import { updateUser } from './apiUser';
+import { isAuthenticated } from './auth';
 
 const ClientProfileManagment = () => {
     const [profileData, setProfileData] = useState({
@@ -17,8 +19,16 @@ const ClientProfileManagment = () => {
         state: '',
     });
 
-    const { name, address, address2, city, zip, state } = profileData;
+    useEffect(() => {
+        //get user info from here
+        console.log(isAuthenticated());
+    },[]);
+    const _id = ''
+    const token = ''
 
+//    const { user: {_id}, token } = isAuthenticated();
+
+    const { name, address, address2, city, zip, state } = profileData;
 
     const [showError, setShowError] = useState(false);
     const [errMsg, setErrMsg] = useState('');
@@ -29,35 +39,53 @@ const ClientProfileManagment = () => {
         setProfileData({...profileData, [name]: value});
     };
 
-    const handleValidation = (e) => {
+    const handleSubmit = event => {
+        event.preventDefault();
+        
+        if (handleValidation()) {
+            updateUser(profileData, _id, token).then(data => {
+                console.log(data);
+            });
+        }
+    };
+
+    const handleValidation = () => {
         setShowError(false);
-        e.preventDefault();
         if (name.length > 50) {
             console.log('ERROR!');
             setShowError(true);
             setErrMsg('Your name must be shorter than 50 characters');
+            return false;
         }
         else if (address.length > 100){
             setShowError(true);
             setErrMsg('The address must be shorter than 100 characters');           
+            return false;
         }
         else if (address2.length > 100){
             setShowError(true);
             setErrMsg('The address2 must be shorter than 100 characters');           
+            return false;
         }
         else if(city.length > 100){
             setShowError(true);
             setErrMsg('The city must be shorter than 100 characters');
+            return false;
 
         }
         else if (zip.length < 5) {
             setShowError(true);
             setErrMsg('The zipcode must be greater than 5 characters');           
+            return false;
         }
         else if (zip.length > 9) {
             setShowError(true);
             setErrMsg('The zipcode must be less than 9 characters');           
+            return false;
         }
+
+
+        return true;
     };
 
     const Error = () => (
