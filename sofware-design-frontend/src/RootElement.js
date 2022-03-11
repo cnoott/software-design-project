@@ -7,6 +7,8 @@ import FuelQuoteForm from './fuel_pages/FuelQuoteForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FuelQuoteHistory from './fuel_pages/FuelQuoteHistory';
 
+import PrivateRoute from './auth/PrivateRoute';
+
 const RootElement = () => {
     return (
         <BrowserRouter>
@@ -15,7 +17,7 @@ const RootElement = () => {
                 <Route path='/' exact element={<App />} />
                 <Route path='/login' exact element={<Login />} />
                 <Route path='/client-registration' exact element={<ClientRegistration />} />
-                <Route path='/client-profile-managment' exact element={<ClientProfileManagment />} />
+                <Route exact path='/client-profile-managment' element={<ClientProfileManagment />} />
                 <Route path='/fuel-quote-form' exact element={<FuelQuoteForm />} />
                 <Route path='/fuel-quote-history' exact element={<FuelQuoteHistory />} />
             </Routes>
