@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import Header from './core/Header';
 import './App.css';
 
@@ -7,7 +6,6 @@ function App() {
     <div className="App">
       <Header />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
           what up new to hello world
