@@ -16,3 +16,32 @@ test('supposed to create new user',async () => {
 
 });
 
+//ROLO
+test('supposed to singin', async () => {
+    const request = httpMocks.createRequest({
+        method: 'POST',
+        url: '/signin',
+        body: {username: 'testuser1', password: 'pizza'}
+    });
+
+    const response = httpMocks.createResponse();
+
+    signin(request, response, err => {
+        except(err).toBeFalsy();
+    });
+});
+
+//ROLO
+test('suppsoed to signout', async () => {
+    const request = httpMocks.createRequest({
+        method: 'GET',
+        url: '/signout'
+    });
+
+    const response = httpMocks.createResponse();
+
+    signout(request, response, err => {
+        except(err).toBeFalsy();
+    });
+
+});
