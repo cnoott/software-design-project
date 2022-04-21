@@ -122,7 +122,7 @@ const ClientProfileManagment = () => {
 
     const Success = () => showSuccess && (
         <div class="alert alert-success" role="alert">
-            Successfully created an account! You many now login!
+            Successfully updated!!
         </div>
     )
 

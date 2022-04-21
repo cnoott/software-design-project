@@ -1,4 +1,7 @@
 const FuelQuote = require('../models/fuel_quote');
+const User = require('../models/user'); //ROLO
+
+
 
 
 //LIAMM

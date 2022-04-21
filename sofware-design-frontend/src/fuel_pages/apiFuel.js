@@ -1,5 +1,6 @@
 import { API } from '../config';
 
+
 export const getFuelQuoteData = () => {
     return fetch(`${API}/get-fuel-quote-data`, {
         method: 'GET',
