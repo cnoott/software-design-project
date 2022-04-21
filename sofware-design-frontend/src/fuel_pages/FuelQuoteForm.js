@@ -27,13 +27,6 @@ const FuelQuoteForm = () => {
         const value = event.target.value;
 
         if (name === 'gallonsRequested') {
-            console.log('hi');
-
-            //ROLO
-
-            await getSuggestedPrice(_id, value).then(data => {
-                setValues({...values, 'pricePGallon': data.suggestedPrice, 'gallonsRequested': value});
-            });
 
             await setTotal(parseInt(value) * pricePGallon);
         }
@@ -68,7 +61,6 @@ const FuelQuoteForm = () => {
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
                     <Form.Label>Suggested Price Per Gallon</Form.Label>
-                    (pricing module)
                     <Form.Control type="number" value={pricePGallon}/>
                 </Form.Group>
 
