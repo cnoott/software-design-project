@@ -11,3 +11,22 @@ exports.getFuelQuoteData = (req, res) => {
         totalAmountDue: 8
     });
 };
+
+exports.submitFuelQuote = (req, res) => {
+    console.log(req.body);
+    const { gallonsRequested, deliveryAddress, deliveryDate, suggestedPricePerGallon, totalAmountDue, userId } = req.body;
+
+    const data = { gallonsRequested, deliveryAddress, deliveryDate, suggestedPricePerGallon, totalAmountDue, userId };
+    let fuelQuote = new FuelQuote(data);
+    fuelQuote.save((err, result) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Error saving new fuel quote + ' + err
+            });
+        }
+        return res.json({
+            result
+        });
+    });
+
+};

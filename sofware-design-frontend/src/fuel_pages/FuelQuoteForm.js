@@ -23,6 +23,16 @@ const FuelQuoteForm = () => {
 
     const { gallonsRequested, deliveryAddress, pricePGallon } = values;
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        submitFuelQuote(gallonsRequested, deliveryAddress, startDate, pricePGallon, total, _id).then(data => {
+            if (!data.error) {
+                setSuccess(true);
+            }
+            console.log(data);
+        });
+    };
+
     const handleChange = name => async event => {
         const value = event.target.value;
 
