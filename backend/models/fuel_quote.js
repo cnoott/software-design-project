@@ -20,7 +20,14 @@ const fuelQuoteSchema = new mongoose.Schema({
 	},
 	totalAmountDue: {
 		type: Number
-	}
+	},
+        
+        userId: {
+            type: ObjectId,
+            ref: 'User',
+            required: true
+        },
+
 },
 	{ timestamps: true }
 );

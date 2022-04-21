@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Header from '../core/Header';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { getSuggestedPrice } from './apiFuel';
+import { isAuthenticated } from '../auth';
 
 const FuelQuoteForm = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -12,8 +14,11 @@ const FuelQuoteForm = () => {
     const [values, setValues] = useState({
         gallonsRequested: '',
         deliveryAddress: '',
-        pricePGallon: 5,
+        pricePGallon: 0,
     });
+
+    const { user: {_id} } = isAuthenticated();
+
     const [total, setTotal] = useState(0); //have to do another state because of issues
 
     const { gallonsRequested, deliveryAddress, pricePGallon } = values;
@@ -21,11 +26,12 @@ const FuelQuoteForm = () => {
     const handleChange = name => async event => {
         const value = event.target.value;
 
-
         if (name === 'gallonsRequested') {
+
             await getSuggestedPrice(_id, value).then(data => {
                 setValues({ ...values, 'pricePGallon': data.suggestedPrice, 'gallonsRequested': value });
             });
+
             await setTotal(parseInt(value) * pricePGallon);
         }
         else {
@@ -54,6 +60,13 @@ const FuelQuoteForm = () => {
                         <Form.Label>Choose a Delivery Date</Form.Label>
                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                     </Form.Group>
+
+
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+
+                    <Form.Label>Suggested Price Per Gallon</Form.Label>
+                    <Form.Control type="number" value={pricePGallon}/>
+                </Form.Group>
 
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

@@ -85,6 +85,7 @@ const ClientRegistration = () => {
                         <InputGroup.Text id="basic-addon1">Password</InputGroup.Text>
                         <FormControl
                             placeholder="Password"
+                            type='password'
                             onChange={handleChange('password')}
                             value={password}
                         />

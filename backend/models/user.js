@@ -37,7 +37,20 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
 
+    state: {
+        type: String
+    },
+
+    city: {
+        type: String
+    },
+
     salt: String,
+    
+    fuelQuotesRequested: {
+        type: Number,
+        default: 0
+    },
 
 },
     {timestamps: true}
