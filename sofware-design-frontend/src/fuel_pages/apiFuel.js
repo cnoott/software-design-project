@@ -1,5 +1,26 @@
 import { API } from '../config';
 
+export const submitFuelQuote = (gallonsRequested, deliveryAddress, deliveryDate, suggestedPricePerGallon, totalAmountDue, userId) => {
+    return fetch(`${API}/submit-fuel-quote/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            gallonsRequested,
+            deliveryAddress,
+            deliveryDate,
+            suggestedPricePerGallon,
+            totalAmountDue,
+            userId
+        })
+    })
+        .then(response => {
+            return response.json()
+        })
+        .catch(err => console.log(err));
+};
+
 export const getFuelQuoteData = () => {
     return fetch(`${API}/get-fuel-quote-data`, {
         method: 'GET',
