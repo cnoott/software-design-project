@@ -5,7 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Header from '../core/Header';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { getSuggestedPrice } from './apiFuel';
+import Alert from 'react-bootstrap/Alert';
+import { getSuggestedPrice, submitFuelQuote } from './apiFuel';
 import { isAuthenticated } from '../auth';
 
 const FuelQuoteForm = () => {
@@ -22,6 +23,20 @@ const FuelQuoteForm = () => {
     const [total, setTotal] = useState(0); //have to do another state because of issues
 
     const { gallonsRequested, deliveryAddress, pricePGallon } = values;
+    
+    const [success, setSuccess] = useState(false);
+    const Success = () => (
+        <>
+            {success &&
+                <Alert variant='success'>
+                    Fuel quote successfully created!
+                </Alert>
+            }
+        </>
+    );
+
+
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,6 +67,7 @@ const FuelQuoteForm = () => {
     return (
         <>
             <Header />
+            <Success/>
             <Container className='mx-5'>
                 <h2 className='my-3'> Fuel Quote Form </h2>
                 {JSON.stringify(values)}
@@ -90,7 +106,7 @@ const FuelQuoteForm = () => {
                         <Form.Control type="number" value={total} />
                     </Form.Group>
 
-                    <Button type='submit'> Submit </Button>
+                    <Button type='submit' onClick={handleSubmit}> Submit </Button>
                 </Form>
             </Container>
         </>
