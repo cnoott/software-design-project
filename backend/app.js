@@ -27,11 +27,13 @@ app.use(cors({
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const fuelRoutes = require('./routes/fuel_quote');
+const priceRoutes = require('./routes/price_module');
 
 //routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', fuelRoutes);
+app.use('/api', priceRoutes);
 
 const PORT = process.env.PORT || 8000;
 
