@@ -21,12 +21,13 @@ export const submitFuelQuote = (gallonsRequested, deliveryAddress, deliveryDate,
         .catch(err => console.log(err));
 };
 
-export const getFuelQuoteData = () => {
+export const getFuelQuoteData = (userId) => {
     return fetch(`${API}/get-fuel-quote-data`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({userId: userId})
     })
         .then(response => {
             return response.json();
