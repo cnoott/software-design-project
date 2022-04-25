@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +7,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Alert from 'react-bootstrap/Alert';
 import { getSuggestedPrice, submitFuelQuote } from './apiFuel';
+import { getUserInfo } from '../apiUser';
+
 import { isAuthenticated } from '../auth';
 
 const FuelQuoteForm = () => {
@@ -35,7 +37,12 @@ const FuelQuoteForm = () => {
         </>
     );
 
-
+    
+    useEffect(() => {
+        getUserInfo(_id).then(data => {
+            setValues({...values, deliveryAddress: data.address1});
+        });
+    },[]);
     
 
     const handleSubmit = (e) => {
@@ -79,7 +86,7 @@ const FuelQuoteForm = () => {
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Delivery Address</Form.Label>
-                        <Form.Control type="text" value={'Placeholder Client Address'} />
+                        <Form.Control type="text" value={deliveryAddress} />
                     </Form.Group>
 
                     <Form.Group>

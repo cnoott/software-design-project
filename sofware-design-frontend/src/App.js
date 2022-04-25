@@ -7,19 +7,8 @@ function App() {
       <Header />
       <header className="App-header">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
-          what up new to hello world
-          adaadaadadadadadad
-          yoyo
+            Software design project
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React. Rolo was here, liam was also here
-        </a>
       </header>
     </div>
   );
